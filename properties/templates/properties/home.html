@@ -1,0 +1,16 @@
+<!-- properties/templates/properties/home.html -->
+
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Home" %} - {% trans "Property Management System" %}{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">{% trans "Welcome to the Property Management System" %}</h1>
+    <p class="lead">{% trans "Find the best properties around the world." %}</p>
+    <hr class="my-4">
+    <p>{% trans "Join us today and list your properties or find your dream home." %}</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'signup' %}" role="button">{% trans "Sign Up Now" %}</a>
+</div>
+{% endblock %}

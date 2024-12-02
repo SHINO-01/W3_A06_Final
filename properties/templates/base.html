@@ -1,0 +1,75 @@
+<!-- templates/base.html -->
+
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% trans "Property Management System" %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-M1nVBhLcX01Bc9n8Q1FIqUoAI1HfEP0cJblcNzYHz8T0xprnpS9nFSjc6kfaF1t"
+      crossorigin="anonymous"
+    >
+    <!-- Custom CSS -->
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">{% trans "Property Management" %}</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/">{% trans "Admin Login" %}</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Language Selector -->
+        <div class="ml-auto">
+            <form action="{% url 'set_language' %}" method="post" class="form-inline">
+                {% csrf_token %}
+                <select name="language" class="form-control mr-2" onchange="this.form.submit()">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% for lang_code, lang_name in LANGUAGES %}
+                    <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                        {{ lang_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+                <noscript><input type="submit" value="{% trans 'Change' %}"></noscript>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container mt-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <span class="text-muted">&copy; {{ current_year }} {% trans "Property Management System" %}</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXd3Y4xJPpIyI5iXlQqaC2eGAmYSm/QwGjc3uxr0YjC6Nf1kG3FsGDVQhZdHz6"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FWydM1Mo6L2eN1y72XxM/4JSkNUcs+M+BIW9NdJ1HeVh+jp4Y0os22BBtpp14n8"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

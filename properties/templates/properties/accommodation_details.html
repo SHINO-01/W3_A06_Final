@@ -1,0 +1,37 @@
+<!-- properties/templates/properties/accommodation_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}{{ accommodation.title }} - {% trans "Property Management System" %}{% endblock %}
+
+{% block content %}
+<h1>{{ accommodation.title }}</h1>
+
+<!-- Display Images -->
+{% if accommodation.images.exists %}
+<div class="row">
+    {% for image in accommodation.images.all %}
+    <div class="col-md-3">
+        <img src="{{ image.image.url }}" class="img-thumbnail" alt="{{ accommodation.title }}">
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Accommodation Details -->
+<p>{{ localized.description }}</p>
+
+<h3>{% trans "Amenities" %}</h3>
+<ul>
+    {% for amenity in accommodation.amenities %}
+    <li>{{ amenity }}</li>
+    {% endfor %}
+</ul>
+
+<h3>{% trans "Policies" %}</h3>
+<ul>
+    {% for key, value in localized.policy.items %}
+    <li>{{ key|capfirst }}: {{ value }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

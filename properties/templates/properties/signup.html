@@ -1,0 +1,28 @@
+<!-- properties/templates/properties/signup.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}{% trans "Sign Up" %} - {% trans "Property Management System" %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2>{% trans "Property Owner Sign Up" %}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="text-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
