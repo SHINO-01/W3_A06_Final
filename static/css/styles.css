@@ -1,0 +1,34 @@
+/* static/css/styles.css */
+
+/* Body Background */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+}
+a {
+  font-style: normal;
+  color: #f8f9fa;
+  text-decoration: none;
+}
+/* Navbar Styling */
+.navbar {
+    margin-bottom: 20px;
+    background-color: #705249;
+}
+
+/* Jumbotron Customization */
+.jumbotron {
+    background-image: url("{% static 'images/hero.jpg' %}");
+    background-size: cover;
+    color: rgb(59, 11, 11);
+}
+
+/* Button Customization */
+.btn-primary {
+    background-color: #9dc4ec;
+    border-color: #75818f;
+}
+
+.btn-primary:hover {
+    background-color: #669eda;
+    border-color: #75787c;
+}

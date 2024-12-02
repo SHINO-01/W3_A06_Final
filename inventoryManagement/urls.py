@@ -14,11 +14,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# inventory_management/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
+    # Internationalization URL patterns
+    path('i18n/', include('django.conf.urls.i18n')),
+    # Admin URL pattern outside i18n_patterns
     path('admin/', admin.site.urls),
-    path('', include('properties.urls')),  # Include URLs from the properties app
+    # Root URL pattern outside i18n_patterns
+    path('', include('properties.urls')),
 ]
+
+# Language-specific URL patterns
+urlpatterns += i18n_patterns(
+    # Include other apps or URL patterns that need language code prefixes
+    # path('blog/', include('blog.urls')),
+)
+
+
 

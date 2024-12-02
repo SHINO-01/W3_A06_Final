@@ -1,11 +1,11 @@
 <!-- templates/base.html -->
 
-{% load i18n %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% trans "Property Management System" %}{% endblock %}</title>
+    <title>{% block title %}Property Management System{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -14,37 +14,42 @@
       crossorigin="anonymous"
     >
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'home' %}">{% trans "Property Management" %}</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/">{% trans "Admin Login" %}</a>
-                </li>
-            </ul>
-        </div>
-        <!-- Language Selector -->
-        <div class="ml-auto">
-            <form action="{% url 'set_language' %}" method="post" class="form-inline">
-                {% csrf_token %}
-                <select name="language" class="form-control mr-2" onchange="this.form.submit()">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% for lang_code, lang_name in LANGUAGES %}
-                    <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
-                        {{ lang_name }}
-                    </option>
-                    {% endfor %}
-                </select>
-                <noscript><input type="submit" value="{% trans 'Change' %}"></noscript>
-            </form>
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">{% trans "Property Management" %}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans "Toggle navigation" %}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">{% trans "Sign Up" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/">{% trans "Admin Login" %}</a>
+                    </li>
+                    <!-- Language Selector -->
+                    <li class="nav-item">
+                        <form action="{% url 'set_language' %}" method="post" class="form-inline">
+                            {% csrf_token %}
+                            <select name="language" class="form-control" onchange="this.form.submit()">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% for lang_code, lang_name in LANGUAGES %}
+                                <option value="{{ lang_code }}" {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ lang_name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -63,7 +68,7 @@
     <!-- Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXd3Y4xJPpIyI5iXlQqaC2eGAmYSm/QwGjc3uxr0YjC6Nf1kG3FsGDVQhZdHz6"
+      integrity="sha384-DfXd3Y4xJPpIyI5iXlQqaC2eAmYSm/QwGjc3uxr0YjC6Nf1kG3FsGDVQhZdHz6"
       crossorigin="anonymous"
     ></script>
     <script
