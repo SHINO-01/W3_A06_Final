@@ -18,7 +18,7 @@ class AccommodationAdmin(admin.ModelAdmin):
     list_display = ('title', 'feed', 'location', 'review_score', 'usd_rate', 'published')
     search_fields = ('title', 'user__username')
     list_filter = ('published', 'feed')
-    raw_id_fields = ('user', 'location')
+    raw_id_fields = ('user',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
