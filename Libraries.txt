@@ -1,0 +1,13 @@
+asgiref
+Django
+sqlparse
+psycopg2-binary
+certifi
+charset-normalizer
+idna
+pillow
+requests
+typing_extensions
+urllib3
+django-leaflet
+djangorestframework
