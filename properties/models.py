@@ -1,7 +1,5 @@
 from django.contrib.gis.db import models as geomodels
 from django.contrib.auth.models import User
-import os
-from uuid import uuid4
 
 class Location(geomodels.Model):
     id = geomodels.CharField(max_length=20, primary_key=True)

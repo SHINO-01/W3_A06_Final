@@ -1,24 +1,9 @@
 from django.contrib import admin
-from django import forms
-from django.utils.html import format_html
-from django.contrib.auth.models import Group, Permission
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.gis import admin as geoadmin
 from leaflet.admin import LeafletGeoAdmin
 from .models import Location, Accommodation, LocalizeAccommodation
+from .forms import AccommodationAdminForm
 
 # Register your models here.
-class AccommodationAdminForm(forms.ModelForm):
-    class Meta:
-        model = Accommodation
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if self.instance and self.instance.pk:  # If editing an existing object
-            self.fields['user'].widget.attrs['readonly'] = True
-            self.fields['user'].widget.attrs['style'] = 'pointer-events: none; background-color: #e9ecef;'
-
 
 @admin.register(Location)
 class LocationAdmin(LeafletGeoAdmin):
@@ -28,6 +13,7 @@ class LocationAdmin(LeafletGeoAdmin):
 
 @admin.register(Accommodation)
 class AccommodationAdmin(admin.ModelAdmin):
+    form = AccommodationAdminForm
     list_display = ('title', 'feed', 'location', 'review_score', 'usd_rate', 'published')
     search_fields = ('title', 'user__username')
     list_filter = ('published', 'feed')
