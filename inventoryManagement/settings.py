@@ -34,6 +34,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+STATIC_ROOT = 'staticFiles'
 # Application definition
 
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'properties',
     'django.contrib.gis',
     'leaflet',
+    'import_export',
 ]
 
 MIDDLEWARE = [

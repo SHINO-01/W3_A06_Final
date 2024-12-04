@@ -1,22 +1,26 @@
 from django.contrib import admin
 from leaflet.admin import LeafletGeoAdmin
 from .models import Location, Accommodation, LocalizeAccommodation
-from .forms import AccommodationAdminForm
+from .forms import AccommodationAdminForm, LocationResource
+from import_export.admin import ImportExportModelAdmin # Add this import
+
 
 # Register your models here.
 
 @admin.register(Location)
-class LocationAdmin(LeafletGeoAdmin):
+class LocationAdmin(LeafletGeoAdmin, ImportExportModelAdmin):
     list_display = ('title', 'location_type', 'city', 'country_code')
     search_fields = ('title', 'city', 'country_code')
     list_filter = ('location_type',)
+    resource_class = LocationResource # Add this line
+
 
 @admin.register(Accommodation)
-class AccommodationAdmin(admin.ModelAdmin):
-    form = AccommodationAdminForm
+class AccommodationAdmin(LeafletGeoAdmin, admin.ModelAdmin):
     list_display = ('title', 'feed', 'location', 'review_score', 'usd_rate', 'published')
     search_fields = ('title', 'user__username')
     list_filter = ('published', 'feed')
+    form = AccommodationAdminForm
 
     def get_form(self, request, obj=None, **kwargs):
         """
