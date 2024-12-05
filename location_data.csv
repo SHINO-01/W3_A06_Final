@@ -1,0 +1,26 @@
+id,title,center,parent_id,location_type,country_code,state_abbr,city
+1,United States,"POINT(-95.7129 37.0902)",,country,US,,
+2,Florida,"POINT(-81.5158 27.6648)",1,state,US,FL,
+3,Texas,"POINT(-99.9018 31.9686)",1,state,US,TX,
+4,California,"POINT(-119.4179 36.7783)",1,state,US,CA,
+5,New York,"POINT(-74.0059 40.7128)",1,state,US,NY,
+6,Tampa-FL,"POINT(-82.4572 27.9506)",2,city,US,FL,Tampa
+7,Downtown-Tampa,"POINT(-82.4572 27.9506)",6,area,US,FL,Tampa
+8,Ybor City-Tampa,"POINT(-82.4410 27.9668)",6,area,US,FL,Tampa
+9,Hyde Park-Tampa,"POINT(-82.4733 27.9337)",6,area,US,FL,Tampa
+10,Austin-TX,"POINT(-97.7431 30.2672)",3,city,US,TX,Austin
+11,Downtown-Austin,"POINT(-97.7428 30.2711)",10,area,US,TX,Austin
+12,South Congress-Austin,"POINT(-97.7491 30.2493)",10,area,US,TX,Austin
+13,Houston-TX,"POINT(-95.3698 29.7604)",3,city,US,TX,Houston
+14,Midtown-Houston,"POINT(-95.3831 29.7412)",13,area,US,TX,Houston
+15,The Heights-Houston,"POINT(-95.3985 29.7973)",13,area,US,TX,Houston
+16,Los Angeles-CA,"POINT(-118.2437 34.0522)",4,city,US,CA,Los Angeles
+17,Hollywood-Los Angeles,"POINT(-118.3287 34.0928)",16,area,US,CA,Los Angeles
+18,Santa Monica-Los Angeles,"POINT(-118.4814 34.0195)",16,area,US,CA,Los Angeles
+19,Brooklyn-NY,"POINT(-73.9442 40.6782)",5,city,US,NY,Brooklyn
+20,Downtown-Brooklyn,"POINT(-73.9896 40.6935)",19,area,US,NY,Brooklyn
+21,Williamsburg-Brooklyn,"POINT(-73.9566 40.7081)",19,area,US,NY,Brooklyn
+22,Miami-FL,"POINT(-80.1918 25.7617)",2,city,US,FL,Miami
+23,Little Havana-Miami,"POINT(-80.2195 25.7655)",22,area,US,FL,Miami
+24,Brickell-Miami,"POINT(-80.1916 25.7613)",22,area,US,FL,Miami
+
